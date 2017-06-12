@@ -6,9 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.net.Inet4Address;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,11 +28,10 @@ class CellTest {
 
     @DisplayName("Throw exceptions if row and column are above 3 or below 1")
     @ParameterizedTest
-    @CsvSource( value = {"0,0","-1,2","2,-1","5,3","4,4"})
-    @Test
+    @CsvSource(value = {"0,0", "-1,2", "2,-1", "5,3", "4,4"})
     void isConstructorRowAndCellValid(Integer row, Integer column) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Cell(row,column);
+            new Cell(row, column);
         });
     }
 
