@@ -14,5 +14,11 @@ public class Cell {
         this.col = col;
     }
 
+    public Seed getContent() {
+        return content;
+    }
 
+    public void setContent(Seed content) {
+        this.content = content;
+    }
 }
