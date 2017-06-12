@@ -21,4 +21,8 @@ public class Cell {
     public void setContent(Seed content) {
         this.content = content;
     }
+
+    public void clear() {
+        this.setContent(Seed.EMPTY);
+    }
 }
