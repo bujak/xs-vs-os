@@ -42,24 +42,24 @@ public class Board {
         }
     }
 
-    public void updateCell(Seed seed, Integer row, Integer column) throws CellAlreadyHasContentException{
+    public void updateCell(Seed seed, Integer row, Integer column) throws CellAlreadyHasContentException {
         if (!Cell.isRowAndColValid(new int[]{row, column})) {
             throw new CellOutOfRangeException();
         }
-        if (cells[row-1][column-1].getContent() != Seed.EMPTY) {
+        if (cells[row - 1][column - 1].getContent() != Seed.EMPTY) {
             throw new CellAlreadyHasContentException();
         }
         this.setMoveCounter(this.getMoveCounter() + 1);
         this.getCell(row, column).setContent(seed);
     }
 
-    public Boolean hasWon(Seed seed, Integer row, Integer col){
+    public Boolean hasWon(Seed seed, Integer row, Integer col) {
         return checkBoard(seed, row, col);
     }
 
     private Boolean checkBoard(Seed seed, Integer row, Integer col) {
-        return checkColumn(col) ||
-                checkRow(row) ||
+        return checkColumn(seed, col) ||
+                checkRow(seed, row) ||
                 checkDiagonal(seed, row, col) ||
                 checkAntiDiagonal(seed, row, col);
     }
@@ -70,26 +70,20 @@ public class Board {
                 !this.hasWon(seed, row, column);
     }
 
-    private Boolean checkColumn(Integer col) {
+    private Boolean checkColumn(Seed seed, Integer col) {
         List<Cell> column = getColumn(col);
-        Cell tempCell = column.get(0);
         for (Cell cell : column) {
-            if (cell.getContent().equals(tempCell.getContent()) && !cell.getContent().equals(Seed.EMPTY)) {
-                tempCell = cell;
-            } else {
+            if (!cell.getContent().equals(seed) || cell.getContent().equals(Seed.EMPTY)) {
                 return false;
             }
         }
         return true;
     }
 
-    private Boolean checkRow(Integer rowNumber) {
-        Cell[] row = this.getCells()[rowNumber-1];
-        Cell tempCell = row[0];
+    private Boolean checkRow(Seed seed, Integer rowNumber) {
+        Cell[] row = this.getCells()[rowNumber - 1];
         for (Cell cell : row) {
-            if (cell.getContent().equals(tempCell.getContent()) && !cell.getContent().equals(Seed.EMPTY)) {
-                tempCell = cell;
-            } else {
+            if (!cell.getContent().equals(seed) || cell.getContent().equals(Seed.EMPTY)) {
                 return false;
             }
         }
@@ -97,12 +91,11 @@ public class Board {
     }
 
     private Boolean checkDiagonal(Seed seed, Integer row, Integer column) {
-        if(row.equals(column)){
-
-            for(int i = 0; i < CellRange.MAXIMAL.getValue(); i++){
-                if(cells[i][i].getContent() != seed)
+        if (row.equals(column)) {
+            for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
+                if (cells[i][i].getContent() != seed)
                     break;
-                if(i == CellRange.MAXIMAL.getValue() -1){
+                if (i == CellRange.MAXIMAL.getValue() - 1) {
                     return true;
                 }
             }
@@ -111,11 +104,11 @@ public class Board {
     }
 
     private Boolean checkAntiDiagonal(Seed seed, Integer row, Integer column) {
-        if((row-1+column-1) == (CellRange.MAXIMAL.getValue()) -1){
-            for(int i = 0; i < CellRange.MAXIMAL.getValue(); i++){
-                if(cells[i][CellRange.MAXIMAL.getValue()-1+i].getContent() != seed)
+        if ((row - 1 + column - 1) == (CellRange.MAXIMAL.getValue()) - 1) {
+            for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
+                if (cells[i][CellRange.MAXIMAL.getValue() - 1 + i].getContent() != seed)
                     break;
-                if(i == CellRange.MAXIMAL.getValue() -1){
+                if (i == CellRange.MAXIMAL.getValue() - 1) {
                     return true;
                 }
             }
@@ -136,6 +129,6 @@ public class Board {
     }
 
     private Cell getCell(Integer row, Integer column) {
-        return this.getCells()[row-1][column-1];
+        return this.getCells()[row - 1][column - 1];
     }
 }
