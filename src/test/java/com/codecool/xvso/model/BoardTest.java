@@ -14,7 +14,7 @@ class BoardTest {
 
     @BeforeEach
     void setUp() {
-        Board board = new Board();
+        board = new Board();
 
     }
 
@@ -28,6 +28,7 @@ class BoardTest {
     void isEmptyInitializedBoard3x3Array() {
         board.init();
         Boolean isEmpty = true;
+        System.out.println(board.getCells().toString());
         for (Cell[] cells : board.getCells()) {
             for (Cell cell : cells) {
                 if (!cell.getContent().equals(Seed.EMPTY)) {
@@ -36,6 +37,7 @@ class BoardTest {
                 }
             }
         }
+        System.out.println();
         assertTrue(isEmpty);
     }
 
