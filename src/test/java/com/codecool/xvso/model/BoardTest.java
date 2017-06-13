@@ -1,5 +1,6 @@
 package com.codecool.xvso.model;
 
+import com.codecool.xcso.exception.CellOutOfRangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,6 @@ class BoardTest {
     void isEmptyInitializedBoard3x3Array() {
         board.init();
         Boolean isEmpty = true;
-        System.out.println(board.getCells().toString());
         for (Cell[] cells : board.getCells()) {
             for (Cell cell : cells) {
                 if (!cell.getContent().equals(Seed.EMPTY)) {
@@ -37,13 +37,12 @@ class BoardTest {
                 }
             }
         }
-        System.out.println();
         assertTrue(isEmpty);
     }
 
     @Test
     void hasWonThrowsCellOutOfRangeExceptionWhenCellAddressIsOutOfRange() {
-        assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(CellOutOfRangeException.class, () ->
                 board.hasWon(
                         Seed.NOUGHT,
                         CellRange.MAXIMAL.getValue() + 1,

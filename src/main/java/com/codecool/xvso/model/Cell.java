@@ -27,11 +27,19 @@ public class Cell {
         this.content = content;
     }
 
+    public Integer getRow() {
+        return row;
+    }
+
+    public Integer getCol() {
+        return col;
+    }
+
     public void clear() {
         this.setContent(Seed.EMPTY);
     }
 
-    private boolean isRowAndColValid(int[] values) {
+    static boolean isRowAndColValid(int[] values) {
         for (int coordinate : values) {
             if (coordinate < CellRange.MINIMAL.getValue() || coordinate > CellRange.MAXIMAL.getValue()) {
                 return false;
