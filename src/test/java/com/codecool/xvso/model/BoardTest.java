@@ -17,6 +17,7 @@ class BoardTest {
     void setUp() {
         board = new Board();
 
+
     }
 
     @Test
@@ -41,9 +42,10 @@ class BoardTest {
     }
 
     @Test
-    void hasWonThrowsCellOutOfRangeExceptionWhenCellAddressIsOutOfRange() {
+    void updateCellThrowsCellOutOfRangeExceptionWhenCellAddressIsOutOfRange() {
+        board.init();
         assertThrows(CellOutOfRangeException.class, () ->
-                board.hasWon(
+                board.updateCell(
                         Seed.NOUGHT,
                         CellRange.MAXIMAL.getValue() + 1,
                         CellRange.MAXIMAL.getValue() + 1
@@ -52,27 +54,37 @@ class BoardTest {
 
     @Test
     void isDrawAfter9Moves() {
-        board.setMoveCounter(9);
-        if (board.hasWon(Seed.NOUGHT, 9, 9).equals(false) && board.getMoveCounter() == 9) {
-            assertTrue(board.isDraw());
-        }
+        board.init();
+        board.updateCell(Seed.CROSS, 1, 1);
+        board.updateCell(Seed.NOUGHT, 1, 2);
+        board.updateCell(Seed.CROSS, 1, 3);
+        board.updateCell(Seed.CROSS, 2, 1);
+        board.updateCell(Seed.NOUGHT, 2, 2);
+        board.updateCell(Seed.CROSS, 2, 3);
+        board.updateCell(Seed.NOUGHT, 3, 1);
+        board.updateCell(Seed.CROSS, 3, 2);
+        board.updateCell(Seed.NOUGHT, 3, 3);
+        assertTrue(board.isDraw(Seed.NOUGHT, 3,3));
     }
 
     @Test
     void isNotDrawAfter9Moves() {
-        board.setMoveCounter(9);
-        if (board.hasWon(Seed.NOUGHT, 9, 9).equals(true) && board.getMoveCounter() == 9) {
-            assertFalse(board.isDraw());
-        }
+        board.init();
+        board.setMoveCounter(8);
+        board.hasWon(Seed.NOUGHT, 3, 3);
+        assertFalse(board.isDraw(Seed.NOUGHT, 3,3));
+
     }
 
     @Test
     void hasWonIsFalseAfter1Move() {
+        board.init();
         assertFalse(board.hasWon(Seed.NOUGHT, 1, 1));
     }
 
     @Test
-    void hasWonIsTrueWhenWith3SameSeedsInColumn() {
+    void hasWonIsTrueWhen3SameSeedsInColumn() {
+        board.init();
         board.updateCell(Seed.NOUGHT, 1, 1);
         board.updateCell(Seed.NOUGHT, 2, 1);
         board.updateCell(Seed.NOUGHT, 3, 1);
@@ -80,7 +92,8 @@ class BoardTest {
     }
 
     @Test
-    void hasWonIsTrueWhenWith3SameSeedsInRow() {
+    void hasWonIsTrueWhen3SameSeedsInRow() {
+        board.init();
         board.updateCell(Seed.NOUGHT, 2, 1);
         board.updateCell(Seed.NOUGHT, 2, 2);
         board.updateCell(Seed.NOUGHT, 2, 3);
