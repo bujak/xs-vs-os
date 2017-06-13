@@ -10,9 +10,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * Created by pgurdek on 12.06.17.
- */
 class CellTest {
 
     Cell cell;
@@ -30,9 +27,7 @@ class CellTest {
     @ParameterizedTest
     @CsvSource(value = {"0,0", "-1,2", "2,-1", "5,3", "4,4"})
     void isConstructorRowAndCellValid(Integer row, Integer column) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Cell(row, column);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Cell(row, column));
     }
 
     @DisplayName("Check if cell content is empty after create")
@@ -49,6 +44,7 @@ class CellTest {
     }
 
     @DisplayName("Clear cell content value and set it to Empty")
+    @Test
     void clearCellContentAndSetToEmpty() {
         cell.setContent(Seed.CROSS);
         cell.clear();
