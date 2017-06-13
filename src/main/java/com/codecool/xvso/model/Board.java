@@ -6,6 +6,18 @@ package com.codecool.xvso.model;
 public class Board {
     Cell[][] cells;
 
+    public Board() {
+        this.cells = new Cell[][];
+    }
+
+    private void fillCells() {
+            for(Integer row=0;row<CellRange.MAXIMAL.getValue()-1;row++){
+                for (Integer col = 0;col<CellRange.MAXIMAL.getValue()-1;col++){
+                    cells[row,col] = new Cell(row,col);
+                }
+            }
+    }
+
     public Cell[][] getCells() {
         return this.cells;
     }
