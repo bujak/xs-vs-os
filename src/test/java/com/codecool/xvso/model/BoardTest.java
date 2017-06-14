@@ -64,7 +64,7 @@ class BoardTest {
         board.updateCell(Seed.NOUGHT, 3, 1);
         board.updateCell(Seed.CROSS, 3, 2);
         board.updateCell(Seed.NOUGHT, 3, 3);
-        assertTrue(board.isDraw(Seed.NOUGHT, 3,3));
+        assertTrue(board.isDraw(Seed.NOUGHT, 3, 3));
     }
 
     @Test
@@ -72,7 +72,7 @@ class BoardTest {
         board.init();
         board.setMoveCounter(8);
         board.hasWon(Seed.NOUGHT, 3, 3);
-        assertFalse(board.isDraw(Seed.NOUGHT, 3,3));
+        assertFalse(board.isDraw(Seed.NOUGHT, 3, 3));
 
     }
 

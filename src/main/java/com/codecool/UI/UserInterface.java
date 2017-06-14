@@ -4,23 +4,22 @@ import com.codecool.xvso.model.Cell;
 import com.codecool.xvso.model.CellRange;
 import com.codecool.xvso.model.Seed;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * Created by pgurdek on 14.06.17.
  */
 public class UserInterface {
-    public void showMenu(){
+    public void showMenu() {
         System.out.println(
                 "Main Menu:\n " +
                         "Pick Game Mode \n" +
-                        "1.Player vs Player\n"+
+                        "1.Player vs Player\n" +
                         "2.Player vs Ai\n"
         );
     }
 
-    public String getInput(){
+    public String getInput() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter command ");
         String getInput = scan.next();
@@ -47,7 +46,7 @@ public class UserInterface {
     }
 
     public void showGameBoard(Cell[][] board) {
-        int lenght = CellRange.MAXIMAL.getValue() * CellRange.MAXIMAL.getValue() +1;
+        int lenght = CellRange.MAXIMAL.getValue() * CellRange.MAXIMAL.getValue() + 1;
         String separator = new String(new char[lenght]).replace("\0", "-");
         for (Cell[] row : board) {
             System.out.println(separator);

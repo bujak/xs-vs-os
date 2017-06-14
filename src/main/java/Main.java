@@ -15,7 +15,7 @@ public class Main {
         userInterface.showMenu();
         String gameMode = userInterface.getInput();
 
-        if(gameMode.equals("1")){
+        if (gameMode.equals("1")) {
 
             PvPController pvPController = new PvPController(new Game(new Board()));
             pvPController.startGame();
