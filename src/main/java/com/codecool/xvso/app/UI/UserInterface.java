@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class UserInterface {
     public void showMenu(){
         System.out.println(
-                "com.codecool.xvso.Main Menu:\n " +
+                "Main Menu:\n " +
                         "Pick Game Mode \n" +
                         "1.Player vs Player\n"+
                         "2.Player vs Ai\n" +
@@ -24,15 +24,13 @@ public class UserInterface {
     public String getInput(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter command ");
-        String getInput = scan.next();
-        return getInput;
+        return scan.next();
     }
 
     public String getInput(String message) {
         Scanner scan = new Scanner(System.in);
         System.out.println(message);
-        String getInput = scan.next();
-        return getInput;
+        return scan.next();
     }
 
     public Integer getIntegerInput(String message) {
