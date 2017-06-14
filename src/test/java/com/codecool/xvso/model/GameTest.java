@@ -1,7 +1,7 @@
 package com.codecool.xvso.model;
 
-import com.codecool.xcso.exception.CellOutOfRangeException;
-import com.codecool.xcso.exception.WrongPlayerException;
+import com.codecool.xvso.exception.CellOutOfRangeException;
+import com.codecool.xvso.exception.WrongPlayerException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -34,6 +34,7 @@ class GameTest {
     @CsvSource(value = {"CROSS,NOUGHT", "NOUGHT,CROSS"})
     void isUpdateGameStateCrossPlayerWon(Seed seedWinner, Seed loser) {
         game.initGame();
+        game.setCurrentPlayer(seedWinner);
         game.updateGameState(seedWinner, 1, 1);
         game.updateGameState(loser, 1, 2);
         game.updateGameState(seedWinner, 2, 2);
