@@ -55,7 +55,7 @@ public class Board {
         }
     }
 
-    public void updateCell(Seed seed, Integer row, Integer column) throws CellAlreadyHasContentException {
+    public void updateCell(Seed seed, Integer row, Integer column) throws CellOutOfRangeException, CellAlreadyHasContentException {
         if (!Cell.isRowAndColValid(new int[]{row, column})) {
             throw new CellOutOfRangeException();
         }
