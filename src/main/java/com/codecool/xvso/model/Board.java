@@ -57,7 +57,7 @@ public class Board {
 
     public void updateCell(Seed seed, Integer row, Integer column) throws CellOutOfRangeException, CellAlreadyHasContentException {
         if (!Cell.isRowAndColValid(new int[]{row, column})) {
-            throw new CellOutOfRangeException("Cell index out of range");
+            throw new CellOutOfRangeException("Cell index must be integer between " + CellRange.MINIMAL.getValue() + " - " + CellRange.MAXIMAL.getValue());
         }
         if (cells[row - 1][column - 1].getContent() != Seed.EMPTY) {
             throw new CellAlreadyHasContentException("Cell is not empty");
