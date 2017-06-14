@@ -10,11 +10,13 @@ import com.codecool.xvso.model.Seed;
  */
 public class PvPController {
 
-    Game game = new Game();
+    Game game;
     UserInterface userInterface = new UserInterface();
     Seed currentPlayer;
-    Integer row,
-            column;
+
+    public PvPController(Game game){
+        this.game = game;
+    }
 
     public void startGame() {
         game.initGame();
