@@ -18,10 +18,15 @@ public class App {
         userInterface.showMenu();
         String gameMode = userInterface.getInput();
 
-        if (gameMode.equals("1")) {
-
-            PvPController pvPController = new PvPController(new Game(new Board()));
-            pvPController.startGame();
+        switch (gameMode) {
+            case ("1"):
+                PvPController pvPController = new PvPController(new Game(new Board()));
+                pvPController.startGame();
+                break;
+            default:
+                break;
         }
+
     }
 }
+
