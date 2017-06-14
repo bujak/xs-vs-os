@@ -1,7 +1,9 @@
 package com.codecool.UI;
 
+import com.codecool.xvso.model.Cell;
 import com.codecool.xvso.model.Seed;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -41,5 +43,9 @@ public class UserInterface {
 
     public void showWinner(Seed currentPlayer) {
         System.out.println("Winner is : " + currentPlayer);
+    }
+
+    public void showGameBoard(Cell[][] board) {
+        System.out.println(Arrays.deepToString(board));
     }
 }

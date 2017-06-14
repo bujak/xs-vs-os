@@ -57,10 +57,10 @@ public class Board {
 
     public void updateCell(Seed seed, Integer row, Integer column) throws CellOutOfRangeException, CellAlreadyHasContentException {
         if (!Cell.isRowAndColValid(new int[]{row, column})) {
-            throw new CellOutOfRangeException();
+            throw new CellOutOfRangeException("Cell index out of range");
         }
         if (cells[row - 1][column - 1].getContent() != Seed.EMPTY) {
-            throw new CellAlreadyHasContentException();
+            throw new CellAlreadyHasContentException("Cell is not empty");
         }
         this.setMoveCounter(this.getMoveCounter() + 1);
         this.getCell(row, column).setContent(seed);

@@ -2,6 +2,7 @@ package com.codecool.controller;
 
 import com.codecool.UI.UserInterface;
 import com.codecool.xvso.model.Game;
+import com.codecool.xvso.model.GameState;
 import com.codecool.xvso.model.Seed;
 
 /**
@@ -19,13 +20,15 @@ public class PvPController {
         game.initGame();
         do {
             currentPlayer = game.getCurrentPlayer();
+            userInterface.showGameBoard(game.getBoard().getCells());
             userInterface.showPlayerTurn(currentPlayer);
             Integer row = Integer.valueOf(userInterface.getInput("Enter row: "));
             Integer column = Integer.valueOf(userInterface.getInput("Eneter Column: "));
             game.updateGameState(currentPlayer, row, column);
-        } while (game.getBoard().hasWon(currentPlayer, row, column) || game.getBoard().isDraw(currentPlayer, row, column));
 
-        if (game.getBoard().isDraw(currentPlayer, row, column)){
+        } while (game.getCurrentState().equals(GameState.PLAYING));
+
+        if (game.getCurrentState().equals(GameState.DRAW)){
             userInterface.draw();
         }
         else{
