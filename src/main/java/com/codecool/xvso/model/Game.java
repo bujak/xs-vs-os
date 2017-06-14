@@ -27,4 +27,12 @@ public class Game {
     public Seed choseRandomFirstSeed() {
         return currentPlayer;
     }
+
+    public Seed getCurrentPlayer() {
+        return currentPlayer;
+    }
+    public void setCurrentPlayer(Seed currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
 }
