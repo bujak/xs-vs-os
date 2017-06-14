@@ -1,7 +1,7 @@
-package com.codecool.xvso.model;
+package com.codecool.xvso.app.model;
 
-import com.codecool.xcso.exception.CellAlreadyHasContentException;
-import com.codecool.xcso.exception.CellOutOfRangeException;
+import com.codecool.xvso.app.exception.CellAlreadyHasContentException;
+import com.codecool.xvso.app.exception.CellOutOfRangeException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

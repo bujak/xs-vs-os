@@ -1,9 +1,9 @@
-package com.codecool.controller;
+package com.codecool.xvso.app.controller;
 
-import com.codecool.UI.UserInterface;
-import com.codecool.xvso.model.Game;
-import com.codecool.xvso.model.GameState;
-import com.codecool.xvso.model.Seed;
+import com.codecool.xvso.app.UI.UserInterface;
+import com.codecool.xvso.app.model.Game;
+import com.codecool.xvso.app.model.GameState;
+import com.codecool.xvso.app.model.Seed;
 
 /**
  * Created by pgurdek on 14.06.17.

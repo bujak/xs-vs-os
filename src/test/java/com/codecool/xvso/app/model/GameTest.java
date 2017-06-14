@@ -1,7 +1,7 @@
-package com.codecool.xvso.model;
+package com.codecool.xvso.app.model;
 
-import com.codecool.xvso.exception.CellOutOfRangeException;
-import com.codecool.xvso.exception.WrongPlayerException;
+import com.codecool.xvso.app.exception.CellOutOfRangeException;
+import com.codecool.xvso.app.exception.WrongPlayerException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * com.codecool.xvso.model
+ * com.codecool.xvso.app.model
  * Created by bujak on 14.06.17.
  */
 class GameTest {

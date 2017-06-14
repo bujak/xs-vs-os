@@ -1,4 +1,4 @@
-package com.codecool.xvso.model;
+package com.codecool.xvso.app.model;
 
 /**
  * Created by pgurdek on 12.06.17.

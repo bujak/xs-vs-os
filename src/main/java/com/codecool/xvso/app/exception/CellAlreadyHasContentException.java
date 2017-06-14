@@ -1,4 +1,4 @@
-package com.codecool.xcso.exception;
+package com.codecool.xvso.app.exception;
 
 /**
  * Created by pgurdek on 13.06.17.

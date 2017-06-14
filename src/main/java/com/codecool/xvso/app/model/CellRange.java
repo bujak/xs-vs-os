@@ -1,7 +1,7 @@
-package com.codecool.xvso.model;
+package com.codecool.xvso.app.model;
 
 /**
- * com.codecool.xvso.model
+ * com.codecool.xvso.app.model
  * Created by bujak on 12.06.17.
  */
 public enum CellRange {

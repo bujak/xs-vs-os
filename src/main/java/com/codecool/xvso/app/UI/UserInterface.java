@@ -1,10 +1,9 @@
-package com.codecool.UI;
+package com.codecool.xvso.app.UI;
 
-import com.codecool.xvso.model.Cell;
-import com.codecool.xvso.model.CellRange;
-import com.codecool.xvso.model.Seed;
+import com.codecool.xvso.app.model.Cell;
+import com.codecool.xvso.app.model.CellRange;
+import com.codecool.xvso.app.model.Seed;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Scanner;
 public class UserInterface {
     public void showMenu(){
         System.out.println(
-                "Main Menu:\n " +
+                "com.codecool.xvso.Main Menu:\n " +
                         "Pick Game Mode \n" +
                         "1.Player vs Player\n"+
                         "2.Player vs Ai\n" +

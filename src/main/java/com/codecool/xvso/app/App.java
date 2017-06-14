@@ -1,9 +1,9 @@
-package com.codecool;
+package com.codecool.xvso.app;
 
-import com.codecool.UI.UserInterface;
-import com.codecool.controller.PvPController;
-import com.codecool.xvso.model.Board;
-import com.codecool.xvso.model.Game;
+import com.codecool.xvso.app.UI.UserInterface;
+import com.codecool.xvso.app.controller.PvPController;
+import com.codecool.xvso.app.model.Board;
+import com.codecool.xvso.app.model.Game;
 
 /**
  * com.codecool

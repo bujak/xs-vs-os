@@ -1,13 +1,13 @@
-package com.codecool.xvso.model;
+package com.codecool.xvso.app.model;
 
-import com.codecool.xcso.exception.CellOutOfRangeException;
+import com.codecool.xvso.app.exception.CellOutOfRangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * com.codecool.xvso.model
+ * com.codecool.xvso.app.model
  * Created by bujak on 13.06.17.
  */
 class BoardTest {

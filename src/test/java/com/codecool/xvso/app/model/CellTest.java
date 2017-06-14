@@ -1,4 +1,4 @@
-package com.codecool.xvso.model;
+package com.codecool.xvso.app.model;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
