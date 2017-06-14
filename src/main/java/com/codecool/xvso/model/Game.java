@@ -16,6 +16,10 @@ public class Game {
         return board;
     }
 
+    public Seed getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     public void initGame(){
 
     }
