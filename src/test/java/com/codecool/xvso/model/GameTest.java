@@ -1,5 +1,6 @@
 package com.codecool.xvso.model;
 
+import com.codecool.xcso.exception.WrongPlayerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -22,11 +23,11 @@ class GameTest {
     }
 
     @Test
-    void isInitGameInitializedEmptyBoard() {
+    void isInitGameInitializedBoard() {
         game.initGame();
         Board board = new Board();
         board.init();
-        assertSame(board, game.getBoard());
+        assertSame(board.getClass(), game.getBoard().getClass());
     }
 
     @ParameterizedTest
@@ -36,7 +37,7 @@ class GameTest {
         game.updateGameState(seed, row, column);
         Cell cell = new Cell(row,column);
         cell.setContent(seed);
-        assertSame(cell, game.getBoard().getCells()[row][column]);
+        assertEquals(cell.getContent(), game.getBoard().getCells()[row-1][column-1].getContent());
     }
 
     @RepeatedTest(10)
@@ -50,5 +51,9 @@ class GameTest {
         game.initGame();
         assertFalse(game.getCurrentPlayer().equals(Seed.EMPTY));
 
+    }
+
+    @Test void isSetCurrentPlayerThrowsWrongPlayerExceptionWhenSettingSeedEmpty() {
+        assertThrows(WrongPlayerException.class, () -> game.setCurrentPlayer(Seed.EMPTY));
     }
 }
