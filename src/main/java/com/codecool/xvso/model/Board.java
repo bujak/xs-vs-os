@@ -4,6 +4,7 @@ import com.codecool.xcso.exception.CellAlreadyHasContentException;
 import com.codecool.xcso.exception.CellOutOfRangeException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,6 +28,18 @@ public class Board {
 
     public void setMoveCounter(Integer moveCounter) {
         this.moveCounter = moveCounter;
+    }
+
+    private List<Cell> getColumn(Integer columnNumber) {
+        List<Cell> column = new ArrayList<>();
+        for (Cell[] row : this.getCells()) {
+            for (Cell cell : row) {
+                if (cell.getCol().equals(columnNumber)) {
+                    column.add(cell);
+                }
+            }
+        }
+        return column;
     }
 
     public void init() {
@@ -60,8 +73,8 @@ public class Board {
     private Boolean checkBoard(Seed seed, Integer row, Integer col) {
         return checkColumn(seed, col) ||
                 checkRow(seed, row) ||
-                checkDiagonal(seed, row, col) ||
-                checkAntiDiagonal(seed, row, col);
+                checkDiagonal(seed) ||
+                checkAntiDiagonal(seed);
     }
 
     public boolean isDraw(Seed seed, Integer row, Integer column) {
@@ -72,60 +85,47 @@ public class Board {
 
     private Boolean checkColumn(Seed seed, Integer col) {
         List<Cell> column = getColumn(col);
-        for (Cell cell : column) {
-            if (!cell.getContent().equals(seed) || cell.getContent().equals(Seed.EMPTY)) {
-                return false;
-            }
-        }
-        return true;
+        return checkCellContent(seed, column);
     }
 
     private Boolean checkRow(Seed seed, Integer rowNumber) {
-        Cell[] row = this.getCells()[rowNumber - 1];
-        for (Cell cell : row) {
+        List<Cell> rowArray = Arrays.asList(this.getCells()[rowNumber - 1]);
+        return checkCellContent(seed, rowArray);
+    }
+
+    private Boolean checkDiagonal(Seed seed) {
+        return checkCellContent(seed, getDiagonal());
+    }
+
+    private List<Cell> getDiagonal() {
+        List<Cell> diagonal = new ArrayList<>();
+        for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
+            diagonal.add(cells[i][i]);
+        }
+        return diagonal;
+    }
+
+
+    private Boolean checkAntiDiagonal(Seed seed) {
+        return checkCellContent(seed, getAniDiagonal());
+    }
+
+    private List<Cell> getAniDiagonal() {
+        List<Cell> anitDiagonal = new ArrayList<>();
+        for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
+            anitDiagonal.add(cells[i][CellRange.MAXIMAL.getValue() - i - 1]);
+        }
+        return anitDiagonal;
+    }
+
+
+    private Boolean checkCellContent(Seed seed, List<Cell> cells) {
+        for (Cell cell : cells) {
             if (!cell.getContent().equals(seed) || cell.getContent().equals(Seed.EMPTY)) {
                 return false;
             }
         }
         return true;
-    }
-
-    private Boolean checkDiagonal(Seed seed, Integer row, Integer column) {
-        if (row.equals(column)) {
-            for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
-                if (cells[i][i].getContent() != seed)
-                    break;
-                if (i == CellRange.MAXIMAL.getValue() - 1) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private Boolean checkAntiDiagonal(Seed seed, Integer row, Integer column) {
-        if ((row - 1 + column - 1) == (CellRange.MAXIMAL.getValue()) - 1) {
-            for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
-                if (cells[i][CellRange.MAXIMAL.getValue() - 1 + i].getContent() != seed)
-                    break;
-                if (i == CellRange.MAXIMAL.getValue() - 1) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private List<Cell> getColumn(Integer columnNumber) {
-        List<Cell> column = new ArrayList<>();
-        for (Cell[] row : this.getCells()) {
-            for (Cell cell : row) {
-                if (cell.getCol().equals(columnNumber)) {
-                    column.add(cell);
-                }
-            }
-        }
-        return column;
     }
 
     private Cell getCell(Integer row, Integer column) {
