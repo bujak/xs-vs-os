@@ -67,15 +67,6 @@ class GameTest {
         assertThrows(CellOutOfRangeException.class, () -> game.updateGameState(Seed.CROSS, 5, 1));
     }
 
-    @Disabled
-    @DisplayName("Throw CellAlreadyHasContentException when Player enters taken row and column")
-    @Test
-    void isUpdateGameStateCellAlreadyHasContentExceptionWhenPlayerEnterTakenRowAndColumn() {
-        game.initGame();
-        game.updateGameState(Seed.CROSS, 1, 1);
-        game.updateGameState(Seed.NOUGHT, 1, 1);
-
-    }
 
     @ParameterizedTest
     @CsvSource(value = {"CROSS,1,1", "NOUGHT, 1,2", "CROSS,2,3", "NOUGHT,3,3"})

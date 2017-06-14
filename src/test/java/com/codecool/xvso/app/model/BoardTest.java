@@ -1,7 +1,9 @@
 package com.codecool.xvso.app.model;
 
+import com.codecool.xvso.app.exception.CellAlreadyHasContentException;
 import com.codecool.xvso.app.exception.CellOutOfRangeException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -98,6 +100,16 @@ class BoardTest {
         board.updateCell(Seed.NOUGHT, 2, 2);
         board.updateCell(Seed.NOUGHT, 2, 3);
         board.hasWon(Seed.NOUGHT, 2, 3);
+    }
+
+    @DisplayName("Throw CellAlreadyHasContentException when Player enters taken row and column")
+    @Test
+    void isUpdateGameStateCellAlreadyHasContentExceptionWhenPlayerEnterTakenRowAndColumn() {
+        board.init();
+        board.updateCell(Seed.CROSS, 1, 1);
+        assertThrows(CellAlreadyHasContentException.class, () -> board.updateCell(Seed.NOUGHT, 1, 1))
+       ;
+
     }
 
 
