@@ -18,8 +18,4 @@ public enum Seed {
         return this.seedValue;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

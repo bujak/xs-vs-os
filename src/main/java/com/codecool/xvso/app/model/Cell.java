@@ -37,10 +37,6 @@ public class Cell {
         this.content = content;
     }
 
-    public Integer getRow() {
-        return row;
-    }
-
     public Integer getCol() {
         return col;
     }
