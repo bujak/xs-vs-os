@@ -1,6 +1,7 @@
 package com.codecool.UI;
 
 import com.codecool.xvso.model.Cell;
+import com.codecool.xvso.model.CellRange;
 import com.codecool.xvso.model.Seed;
 
 import java.util.Arrays;
@@ -46,6 +47,17 @@ public class UserInterface {
     }
 
     public void showGameBoard(Cell[][] board) {
-        System.out.println(Arrays.deepToString(board));
+        int lenght = CellRange.MAXIMAL.getValue() * CellRange.MAXIMAL.getValue() +1;
+        String separator = new String(new char[lenght]).replace("\0", "-");
+        for (Cell[] row : board) {
+            System.out.println(separator);
+            System.out.print("|");
+            for (Cell cell : row) {
+                System.out.print(cell.getContent().getValue());
+                System.out.print(" |");
+            }
+            System.out.println();
+        }
+        System.out.println(separator);
     }
 }
