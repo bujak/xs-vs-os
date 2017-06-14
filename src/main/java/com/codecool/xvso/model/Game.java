@@ -26,10 +26,6 @@ public class Game {
         return currentPlayer;
     }
 
-    public GameState getCurrentState() {
-        return currentState;
-    }
-
     public void setCurrentPlayer(Seed currentPlayer) throws WrongPlayerException {
         if (currentPlayer.equals(Seed.EMPTY)) {
             throw new WrongPlayerException();
@@ -37,19 +33,23 @@ public class Game {
         this.currentPlayer = currentPlayer;
     }
 
+    public GameState getCurrentState() {
+        return currentState;
+    }
+
     public void setCurrentState(GameState currentState) {
         this.currentState = currentState;
     }
 
     private void setWon(Seed seed) {
-        if (seed.equals(Seed.CROSS)){
+        if (seed.equals(Seed.CROSS)) {
             this.setCurrentState(GameState.CROSS_WON);
         } else {
             this.setCurrentState(GameState.NOUGHT_WON);
         }
     }
 
-    public void initGame(){
+    public void initGame() {
         board.init();
         setCurrentPlayer(choseRandomFirstSeed());
         setCurrentState(GameState.PLAYING);
@@ -76,8 +76,6 @@ public class Game {
         }
 
 
-
-
     }
 
     private Seed choseRandomFirstSeed() {
@@ -88,7 +86,7 @@ public class Game {
         return player[randomIndex];
     }
 
-    private void switchCurrentPlayer(){
+    private void switchCurrentPlayer() {
         if (getCurrentPlayer().equals(Seed.NOUGHT)) {
             setCurrentPlayer(Seed.CROSS);
         } else {

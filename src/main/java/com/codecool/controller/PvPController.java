@@ -14,7 +14,7 @@ public class PvPController {
     UserInterface userInterface = new UserInterface();
     Seed currentPlayer;
 
-    public PvPController(Game game){
+    public PvPController(Game game) {
         this.game = game;
     }
 
@@ -30,10 +30,9 @@ public class PvPController {
 
         } while (game.getCurrentState().equals(GameState.PLAYING));
 
-        if (game.getCurrentState().equals(GameState.DRAW)){
+        if (game.getCurrentState().equals(GameState.DRAW)) {
             userInterface.draw();
-        }
-        else{
+        } else {
             userInterface.showWinner(currentPlayer);
         }
     }

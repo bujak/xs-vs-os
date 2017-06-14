@@ -11,12 +11,22 @@ public class Cell {
     private Integer col;
 
     public Cell(Integer row, Integer col) {
-        if (!isRowAndColValid(new int[]{row, col})){
-            throw new  IllegalArgumentException();
-        };
+        if (!isRowAndColValid(new int[]{row, col})) {
+            throw new IllegalArgumentException();
+        }
+        ;
         this.row = row;
         this.col = col;
         this.content = Seed.EMPTY;
+    }
+
+    static boolean isRowAndColValid(int[] values) {
+        for (int coordinate : values) {
+            if (coordinate < CellRange.MINIMAL.getValue() || coordinate > CellRange.MAXIMAL.getValue()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Seed getContent() {
@@ -37,14 +47,5 @@ public class Cell {
 
     public void clear() {
         this.setContent(Seed.EMPTY);
-    }
-
-    static boolean isRowAndColValid(int[] values) {
-        for (int coordinate : values) {
-            if (coordinate < CellRange.MINIMAL.getValue() || coordinate > CellRange.MAXIMAL.getValue()) {
-                return false;
-            }
-        }
-        return true;
     }
 }
