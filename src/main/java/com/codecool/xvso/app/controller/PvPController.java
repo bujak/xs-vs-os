@@ -25,7 +25,7 @@ public class PvPController {
             userInterface.showGameBoard(game.getBoard().getCells());
             userInterface.showPlayerTurn(currentPlayer);
             Integer row = userInterface.getIntegerInput("Enter row: ");
-            Integer column = userInterface.getIntegerInput("Eneter Column: ");
+            Integer column = userInterface.getIntegerInput("Enter Column: ");
             game.updateGameState(currentPlayer, row, column);
 
         } while (game.getCurrentState().equals(GameState.PLAYING));
