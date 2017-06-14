@@ -16,7 +16,9 @@ public class UserInterface {
                 "Main Menu:\n " +
                         "Pick Game Mode \n" +
                         "1.Player vs Player\n"+
-                        "2.Player vs Ai\n"
+                        "2.Player vs Ai\n" +
+                        "\n" +
+                        "Other key: exit"
         );
     }
 
@@ -32,6 +34,16 @@ public class UserInterface {
         System.out.println(message);
         String getInput = scan.next();
         return getInput;
+    }
+
+    public Integer getIntegerInput(String message) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(message);
+        while(!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Type integer between " + CellRange.MINIMAL.getValue() + " - " + CellRange.MAXIMAL.getValue());
+            scanner.next();
+        }
+        return scanner.nextInt();
     }
 
     public void showPlayerTurn(Seed currentPlayer) {
