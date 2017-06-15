@@ -1,6 +1,7 @@
 package com.codecool.xvso.app;
 
 import com.codecool.xvso.app.UI.UserInterface;
+import com.codecool.xvso.app.controller.AIvsPlayerController;
 import com.codecool.xvso.app.controller.PvPController;
 import com.codecool.xvso.app.model.Board;
 import com.codecool.xvso.app.model.Game;
@@ -22,6 +23,11 @@ public class App {
             case ("1"):
                 PvPController pvPController = new PvPController(new Game(new Board()));
                 pvPController.startGame();
+                break;
+
+            case ("2"):
+                AIvsPlayerController aIvsPlayerController  = new  AIvsPlayerController(new Game(new Board()));
+                aIvsPlayerController.startGame();
                 break;
             default:
                 break;
