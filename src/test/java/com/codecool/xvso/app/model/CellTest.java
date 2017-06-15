@@ -12,15 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CellTest {
 
-    Cell cell;
+    private Cell cell;
 
     @BeforeEach
     void setUp() {
         cell = new Cell(1, 1);
-    }
-
-    @AfterEach
-    void tearDown() {
     }
 
     @DisplayName("Throw exceptions if row and column are above 3 or below 1")
