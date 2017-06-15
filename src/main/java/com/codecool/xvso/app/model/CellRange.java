@@ -7,7 +7,8 @@ package com.codecool.xvso.app.model;
 public enum CellRange {
 
     MINIMAL(1),
-    MAXIMAL(3);
+    MAXIMAL(3),
+    ARRAYMODIFIER(1);
 
     private final int value;
 
