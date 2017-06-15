@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * com.codecool.xvso.app.model.ai
@@ -19,7 +17,6 @@ import static org.mockito.Mockito.when;
 class AITest {
 
     private AI ai;
-    @Mock
     private Game game;
 
     @BeforeEach
