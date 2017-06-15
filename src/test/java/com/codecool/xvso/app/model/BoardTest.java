@@ -13,24 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by bujak on 13.06.17.
  */
 class BoardTest {
-    Board board;
+    private Board board;
 
     @BeforeEach
     void setUp() {
         board = new Board();
-
-
-    }
-
-    @Test
-    void createEmptyConstructor() {
-        Board newBoard = new Board();
-        assertSame(Board.class, newBoard.getClass());
-    }
-
-    @Test
-    void isEmptyInitializedBoard3x3Array() {
         board.init();
+    }
+
+    @Test
+    void isInitializedBoardHasArrayWithEmptyCells() {
         Boolean isEmpty = true;
         for (Cell[] cells : board.getCells()) {
             for (Cell cell : cells) {
@@ -44,72 +36,64 @@ class BoardTest {
     }
 
     @Test
-    void updateCellThrowsCellOutOfRangeExceptionWhenCellAddressIsOutOfRange() {
-        board.init();
+    void isUpdateCellThrowsCellOutOfRangeExceptionWhenCellAddressIsOutOfRange() {
+        int rangeIncreaser = 1;
         assertThrows(CellOutOfRangeException.class, () ->
                 board.updateCell(
                         Seed.NOUGHT,
-                        CellRange.MAXIMAL.getValue() + 1,
-                        CellRange.MAXIMAL.getValue() + 1
+                        CellRange.MAXIMAL.getValue() + rangeIncreaser,
+                        CellRange.MAXIMAL.getValue() + rangeIncreaser
                 ));
     }
 
     @Test
-    void isDrawAfter9Moves() {
-        board.init();
-        board.updateCell(Seed.CROSS, 1, 1);
-        board.updateCell(Seed.NOUGHT, 1, 2);
-        board.updateCell(Seed.CROSS, 1, 3);
-        board.updateCell(Seed.CROSS, 2, 1);
-        board.updateCell(Seed.NOUGHT, 2, 2);
-        board.updateCell(Seed.CROSS, 2, 3);
-        board.updateCell(Seed.NOUGHT, 3, 1);
-        board.updateCell(Seed.CROSS, 3, 2);
-        board.updateCell(Seed.NOUGHT, 3, 3);
-        assertTrue(board.isDraw(Seed.NOUGHT, 3, 3));
+    void isDrawAfter9MovesWithDrawConfiguration() {
+        //inserting cells for draw configuration
+        int[][] crossCoordinates = {{1, 1}, {1, 3}, {2, 1}, {2, 3}, {3, 2}};
+        int[][] noughtCoordinates = {{1, 2}, {2, 2}, {3, 1}, {3, 3}};
+        for (int[] pair : crossCoordinates) {
+            board.updateCell(Seed.CROSS, pair[0], pair[1]);
+        }
+        for (int[] pair : noughtCoordinates) {
+            board.updateCell(Seed.NOUGHT, pair[0], pair[1]);
+        }
+        assertTrue(board.isDraw(Seed.NOUGHT, CellRange.MAXIMAL.getValue(), CellRange.MAXIMAL.getValue()));
     }
 
     @Test
-    void isNotDrawAfter9Moves() {
-        board.init();
-        board.setMoveCounter(8);
-        board.hasWon(Seed.NOUGHT, 3, 3);
-        assertFalse(board.isDraw(Seed.NOUGHT, 3, 3));
-
-    }
-
-    @Test
-    void hasWonIsFalseAfter1Move() {
-        board.init();
-        assertFalse(board.hasWon(Seed.NOUGHT, 1, 1));
+    void isHasWonIsFalseAfter1Move() {
+        assertFalse(board.hasWon(Seed.NOUGHT, CellRange.MINIMAL.getValue(), CellRange.MINIMAL.getValue()));
     }
 
     @Test
     void hasWonIsTrueWhen3SameSeedsInColumn() {
-        board.init();
-        board.updateCell(Seed.NOUGHT, 1, 1);
-        board.updateCell(Seed.NOUGHT, 2, 1);
-        board.updateCell(Seed.NOUGHT, 3, 1);
-        board.hasWon(Seed.NOUGHT, 3, 1);
+        int column = CellRange.MAXIMAL.getValue();
+        for (int row = 1; row <= CellRange.MAXIMAL.getValue(); row++) {
+            board.updateCell(Seed.NOUGHT, row, column);
+
+        }
+        assertTrue(board.hasWon(Seed.NOUGHT, CellRange.MINIMAL.getValue(), column));
+
     }
 
     @Test
     void hasWonIsTrueWhen3SameSeedsInRow() {
-        board.init();
-        board.updateCell(Seed.NOUGHT, 2, 1);
-        board.updateCell(Seed.NOUGHT, 2, 2);
-        board.updateCell(Seed.NOUGHT, 2, 3);
-        board.hasWon(Seed.NOUGHT, 2, 3);
+        int row = CellRange.MINIMAL.getValue();
+        for (int column = 1; column <= CellRange.MAXIMAL.getValue(); column++) {
+            board.updateCell(Seed.NOUGHT, row, column);
+        }
+        assertTrue(board.hasWon(Seed.NOUGHT, row, CellRange.MINIMAL.getValue()));
+
     }
 
     @DisplayName("Throw CellAlreadyHasContentException when Player enters taken row and column")
     @Test
     void isUpdateGameStateCellAlreadyHasContentExceptionWhenPlayerEnterTakenRowAndColumn() {
-        board.init();
-        board.updateCell(Seed.CROSS, 1, 1);
-        assertThrows(CellAlreadyHasContentException.class, () -> board.updateCell(Seed.NOUGHT, 1, 1))
-       ;
-
+        int row = CellRange.MINIMAL.getValue();
+        int column = CellRange.MAXIMAL.getValue();
+        board.updateCell(Seed.CROSS, row, column);
+        assertThrows(CellAlreadyHasContentException.class, () -> board.updateCell(Seed.NOUGHT, row, column))
+        ;
     }
 
 
