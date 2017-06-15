@@ -10,9 +10,9 @@ import com.codecool.xvso.app.model.Seed;
  */
 public class PvPController {
 
-    Game game;
-    UserInterface userInterface = new UserInterface();
-    Seed currentPlayer;
+    private Game game;
+    private UserInterface userInterface = new UserInterface();
+    private Seed currentPlayer;
 
     public PvPController(Game game) {
         this.game = game;
