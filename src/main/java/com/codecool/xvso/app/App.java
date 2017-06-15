@@ -24,7 +24,6 @@ public class App {
                 PvPController pvPController = new PvPController(new Game(new Board()));
                 pvPController.startGame();
                 break;
-
             case ("2"):
                 AIvsPlayerController aIvsPlayerController  = new  AIvsPlayerController(new Game(new Board()));
                 aIvsPlayerController.startGame();
