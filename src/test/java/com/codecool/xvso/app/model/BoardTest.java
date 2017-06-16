@@ -21,6 +21,7 @@ class BoardTest {
         board.init();
     }
 
+    @DisplayName("Initialized board is an array with cells with empty seed")
     @Test
     void isInitializedBoardHasArrayWithEmptyCells() {
         Boolean isEmpty = true;
@@ -35,6 +36,7 @@ class BoardTest {
         assertTrue(isEmpty);
     }
 
+    @DisplayName("Update cell throws exception when cell adress out of range")
     @Test
     void isUpdateCellThrowsCellOutOfRangeExceptionWhenCellAddressIsOutOfRange() {
         int rangeIncreaser = 1;
@@ -46,8 +48,9 @@ class BoardTest {
                 ));
     }
 
+    @DisplayName("isDraw return true when draw configuaration")
     @Test
-    void isDrawAfter9MovesWithDrawConfiguration() {
+    void isDrawReturnsTrueAfter9MovesWithDrawConfiguration() {
         //inserting cells for draw configuration
         int[][] crossCoordinates = {{1, 1}, {1, 3}, {2, 1}, {2, 3}, {3, 2}};
         int[][] noughtCoordinates = {{1, 2}, {2, 2}, {3, 1}, {3, 3}};
@@ -60,13 +63,15 @@ class BoardTest {
         assertTrue(board.isDraw(Seed.NOUGHT, CellRange.MAXIMAL.getValue(), CellRange.MAXIMAL.getValue()));
     }
 
+    @DisplayName("hasWon returns false after 1 move")
     @Test
-    void isHasWonIsFalseAfter1Move() {
+    void isHasWonReturnsFalseAfter1Move() {
         assertFalse(board.hasWon(Seed.NOUGHT, CellRange.MINIMAL.getValue(), CellRange.MINIMAL.getValue()));
     }
 
+    @DisplayName("hasWon returns true when 3 same seed in column")
     @Test
-    void hasWonIsTrueWhen3SameSeedsInColumn() {
+    void hasWonReturnsTrueWhen3SameSeedsInColumn() {
         int column = CellRange.MAXIMAL.getValue();
         for (int row = 1; row <= CellRange.MAXIMAL.getValue(); row++) {
             board.updateCell(Seed.NOUGHT, row, column);
@@ -75,8 +80,9 @@ class BoardTest {
 
     }
 
+    @DisplayName("hasWon returns true when 3 same seed in row")
     @Test
-    void hasWonIsTrueWhen3SameSeedsInRow() {
+    void hasWonReturnsTrueWhen3SameSeedsInRow() {
         int row = CellRange.MINIMAL.getValue();
         for (int column = 1; column <= CellRange.MAXIMAL.getValue(); column++) {
             board.updateCell(Seed.NOUGHT, row, column);
