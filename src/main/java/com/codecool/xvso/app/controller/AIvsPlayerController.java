@@ -30,6 +30,8 @@ public class AIvsPlayerController {
         game.initGame();
         this.ai = new AI(game, game.getCurrentPlayer());
         humanPlayer = game.getCurrentPlayer();
+        userInterface.showMessage("AI is brutal and mean! \n" +
+                "If you type wrong cell, AI takes your turn, so be careful!");
         do {
             userInterface.showGameBoard(game.getBoard().getCells());
             userInterface.showPlayerTurn(humanPlayer);

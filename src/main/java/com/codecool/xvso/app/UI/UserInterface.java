@@ -69,4 +69,8 @@ public class UserInterface {
         }
         System.out.println(separator);
     }
+
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
 }
