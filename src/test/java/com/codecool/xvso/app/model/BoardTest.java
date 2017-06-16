@@ -70,7 +70,6 @@ class BoardTest {
         int column = CellRange.MAXIMAL.getValue();
         for (int row = 1; row <= CellRange.MAXIMAL.getValue(); row++) {
             board.updateCell(Seed.NOUGHT, row, column);
-
         }
         assertTrue(board.hasWon(Seed.NOUGHT, CellRange.MINIMAL.getValue(), column));
 
