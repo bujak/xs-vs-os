@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by bujak on 14.06.17.
  */
 class SeedTest {
+
     @ParameterizedTest
     @CsvSource(value = {"CROSS, X", "NOUGHT, O", "EMPTY, ' '"})
     void seedGetValueReturnProperValue(Seed seed, String value) {
