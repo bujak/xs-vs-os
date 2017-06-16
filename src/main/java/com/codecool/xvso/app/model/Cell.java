@@ -5,18 +5,17 @@ package com.codecool.xvso.app.model;
  */
 public class Cell {
 
-    private CellRange cellRange;
     private Seed content;
     private Integer row;
-    private Integer col;
+    private Integer column;
 
-    public Cell(Integer row, Integer col) {
-        if (!isRowAndColValid(new int[]{row, col})) {
+    public Cell(Integer row, Integer column) {
+        if (!isRowAndColValid(new int[]{row, column})) {
             throw new IllegalArgumentException();
         }
         ;
         this.row = row;
-        this.col = col;
+        this.column = column;
         this.content = Seed.EMPTY;
     }
 
@@ -38,7 +37,7 @@ public class Cell {
     }
 
     public Integer getCol() {
-        return col;
+        return column;
     }
 
     public void clear() {

@@ -11,8 +11,9 @@ import java.util.List;
  * Created by pgurdek on 12.06.17.
  */
 public class Board {
-    Cell[][] cells;
-    Integer moveCounter;
+    private Cell[][] cells;
+    private Integer moveCounter;
+    private final int ARRAYMODIFIER = CellRange.ARRAYMODIFIER.getValue();
 
     public Board() {
         this.cells = new Cell[CellRange.MAXIMAL.getValue()][CellRange.MAXIMAL.getValue()];
@@ -22,11 +23,11 @@ public class Board {
         return this.cells;
     }
 
-    public Integer getMoveCounter() {
+    private Integer getMoveCounter() {
         return this.moveCounter;
     }
 
-    public void setMoveCounter(Integer moveCounter) {
+    private void setMoveCounter(Integer moveCounter) {
         this.moveCounter = moveCounter;
     }
 
@@ -42,62 +43,62 @@ public class Board {
         return column;
     }
 
-    public void init() {
+    void init() {
         fillCells();
         setMoveCounter(0);
     }
 
     private void fillCells() {
         for (Integer row = 0; row < CellRange.MAXIMAL.getValue(); row++) {
-            for (Integer col = 0; col < CellRange.MAXIMAL.getValue(); col++) {
-                cells[row][col] = new Cell(row + 1, col + 1);
+            for (Integer column = 0; column < CellRange.MAXIMAL.getValue(); column++) {
+                cells[row][column] = new Cell(row + ARRAYMODIFIER, column + ARRAYMODIFIER);
             }
         }
     }
 
-    public void updateCell(Seed seed, Integer row, Integer column) throws CellOutOfRangeException, CellAlreadyHasContentException {
+    void updateCell(Seed seed, Integer row, Integer column) throws CellOutOfRangeException, CellAlreadyHasContentException {
         if (!Cell.isRowAndColValid(new int[]{row, column})) {
             throw new CellOutOfRangeException("Cell index must be integer between " + CellRange.MINIMAL.getValue() + " - " + CellRange.MAXIMAL.getValue());
         }
-        if (cells[row - 1][column - 1].getContent() != Seed.EMPTY) {
+        if (cells[row - ARRAYMODIFIER][column - ARRAYMODIFIER].getContent() != Seed.EMPTY) {
             throw new CellAlreadyHasContentException("Cell is not empty");
         }
         this.setMoveCounter(this.getMoveCounter() + 1);
         this.getCell(row, column).setContent(seed);
     }
 
-    public Boolean hasWon(Seed seed, Integer row, Integer col) {
-        return checkBoard(seed, row, col);
+    Boolean hasWon(Seed seed, Integer row, Integer column) {
+        return checkBoard(seed, row, column);
     }
 
-    private Boolean checkBoard(Seed seed, Integer row, Integer col) {
-        return checkColumn(seed, col) ||
+    private Boolean checkBoard(Seed seed, Integer row, Integer column) {
+        return checkColumn(seed, column) ||
                 checkRow(seed, row) ||
                 checkDiagonal(seed) ||
                 checkAntiDiagonal(seed);
     }
 
-    public boolean isDraw(Seed seed, Integer row, Integer column) {
+    boolean isDraw(Seed seed, Integer row, Integer column) {
         return (this.getMoveCounter().equals((CellRange.MAXIMAL.getValue() * CellRange.MAXIMAL.getValue())))
                 &&
                 !this.hasWon(seed, row, column);
     }
 
-    private Boolean checkColumn(Seed seed, Integer col) {
-        List<Cell> column = getColumn(col);
-        return checkCellContent(seed, column);
+    private Boolean checkColumn(Seed seed, Integer column) {
+        List<Cell> columnContent = getColumn(column);
+        return checkCellContent(seed, columnContent);
     }
 
     private Boolean checkRow(Seed seed, Integer rowNumber) {
-        List<Cell> rowArray = Arrays.asList(this.getCells()[rowNumber - 1]);
+        List<Cell> rowArray = Arrays.asList(this.getCells()[rowNumber - ARRAYMODIFIER]);
         return checkCellContent(seed, rowArray);
     }
 
     private Boolean checkDiagonal(Seed seed) {
-        return checkCellContent(seed, getDiagonal());
+        return checkCellContent(seed, getDiagonalCells());
     }
 
-    private List<Cell> getDiagonal() {
+    private List<Cell> getDiagonalCells() {
         List<Cell> diagonal = new ArrayList<>();
         for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
             diagonal.add(cells[i][i]);
@@ -107,15 +108,15 @@ public class Board {
 
 
     private Boolean checkAntiDiagonal(Seed seed) {
-        return checkCellContent(seed, getAniDiagonal());
+        return checkCellContent(seed, getAniDiagonalCells());
     }
 
-    private List<Cell> getAniDiagonal() {
-        List<Cell> anitDiagonal = new ArrayList<>();
+    private List<Cell> getAniDiagonalCells() {
+        List<Cell> antiDiagonal = new ArrayList<>();
         for (int i = 0; i < CellRange.MAXIMAL.getValue(); i++) {
-            anitDiagonal.add(cells[i][CellRange.MAXIMAL.getValue() - i - 1]);
+            antiDiagonal.add(cells[i][CellRange.MAXIMAL.getValue() - i - ARRAYMODIFIER]);
         }
-        return anitDiagonal;
+        return antiDiagonal;
     }
 
 
@@ -129,6 +130,6 @@ public class Board {
     }
 
     private Cell getCell(Integer row, Integer column) {
-        return this.getCells()[row - 1][column - 1];
+        return this.getCells()[row - ARRAYMODIFIER][column - ARRAYMODIFIER];
     }
 }

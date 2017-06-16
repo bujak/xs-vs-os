@@ -1,16 +1,17 @@
 package com.codecool.xvso.app.controller;
 
 import com.codecool.xvso.app.UI.UserInterface;
-import com.codecool.xvso.app.model.ai.AI;
 import com.codecool.xvso.app.model.Game;
 import com.codecool.xvso.app.model.GameState;
 import com.codecool.xvso.app.model.Seed;
+import com.codecool.xvso.app.model.ai.AI;
 
 /**
  * com.codecool.xvso.app.controller
  * Created by bujak on 14.06.17.
  */
 public class AIvsPlayerController {
+
     private AI ai;
     private Game game;
     private UserInterface userInterface = new UserInterface();
@@ -19,11 +20,9 @@ public class AIvsPlayerController {
 
     public AIvsPlayerController(Game game) {
         this.game = game;
-
-
     }
 
-    public void setCurrentPlayer(Seed currentPlayer) {
+    private void setCurrentPlayer(Seed currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 

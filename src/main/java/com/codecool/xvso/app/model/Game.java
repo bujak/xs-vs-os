@@ -82,7 +82,7 @@ public class Game {
         Seed[] player = {Seed.NOUGHT, Seed.CROSS};
 
         Random random = new Random();
-        int randomIndex = random.nextInt(2);
+        int randomIndex = random.nextInt(player.length);
         return player[randomIndex];
     }
 

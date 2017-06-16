@@ -94,6 +94,4 @@ class BoardTest {
         assertThrows(CellAlreadyHasContentException.class, () -> board.updateCell(Seed.NOUGHT, row, column))
         ;
     }
-
-
 }

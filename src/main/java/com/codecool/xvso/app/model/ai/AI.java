@@ -30,12 +30,11 @@ public class AI {
         } else {
             this.seed = Seed.CROSS;
         }
-
     }
 
     private int randomCoordGenerator() {
         Random random = new Random();
-        return random.nextInt(CellRange.MAXIMAL.getValue() - CellRange.MINIMAL.getValue() + 1) + CellRange.MINIMAL.getValue();
+        return random.nextInt(CellRange.MAXIMAL.getValue()) + CellRange.MINIMAL.getValue();
     }
 
     public void makeMove() {
@@ -43,7 +42,10 @@ public class AI {
         int randomColumn = randomCoordGenerator();
         boolean notMoved = true;
         while (notMoved) {
-            if (game.getBoard().getCells()[randomRow - CellRange.ARRAYMODIFIER.getValue()][randomColumn - CellRange.ARRAYMODIFIER.getValue()].getContent().equals(Seed.EMPTY)) {
+            if (game.getBoard().getCells()
+                    [randomRow - CellRange.ARRAYMODIFIER.getValue()]
+                    [randomColumn - CellRange.ARRAYMODIFIER.getValue()]
+                    .getContent().equals(Seed.EMPTY)) {
                 game.updateGameState(this.seed, randomRow, randomColumn);
                 notMoved = false;
             }
